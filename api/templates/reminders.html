@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reminders for 05052016</title>
+  <link href="{{url_for('static', filename='css/listview.css')}}" rel="stylesheet" type="text/css"/>
+  <link href="{{url_for('static', filename='materialize/css/materialize.min.css')}}" rel="stylesheet" type="text/css"/>
+  <script src="{{url_for('static', filename='materialize/js/materialize.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/listview.js')}}"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  {%for reminder in reminderL%}
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card orange lighten-3">
+        <div class="card-content grey-text text-darken-3">
+          <span class="black-text"><span class="card-title">{{reminder["title"]}}</span></span>
+          <p>{{reminder["date_due"]}}</p>
+        </br>
+        <p>{{reminder["description"]}}</p>
+      </div>
+      <div class="card-action">
+        <form action="#">
+          <p>
+            <input type="checkbox" id={{reminder["id"]}} onclick="updateCompletion(this,http://laconic-vicuna-9993.vagrantshare.com,False,36c17ad9-f248-4fb7-bf47-566efd0d8ce5)"/>
+            <label for={{reminder["id"]}}></label>
+          </scan></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+</body>
