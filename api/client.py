@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, redirect, current_app, render_templat
 import urllib, os, ast, uuid, urllib2
 template_dir=os.getcwd()+"/templates/"
 app = Flask(__name__,template_folder=template_dir)
-serverURL = "http://terrible-dugong-9690.vagrantshare.com"
+serverURL = "http://71.233.215.86:8080"
 months = {
     "January":{
         "name":"January",
@@ -161,7 +161,6 @@ def get_new(date):
     else:
         var1 = '%s/api/v2/attribute-filter/date_due/' % (serverURL) +str(date)+'?'
         var2 = (urllib.urlopen(var1).read())
-        print(str(var2))
         response = json.loads(var2)
         return render_template("reminders.html",reminderL=response)
 
