@@ -2,45 +2,50 @@
 <html>
 <head>
   <title>R2 Calendar View</title>
-  <link href="{{url_for('static', filename='materialize/css/materialize.min.css')}}" rel="stylesheet" type="text/css"/>
+  <link href="{{url_for('static', filename='css/calendar.css')}}" rel="stylesheet" type="text/css"/>
   <script src="{{url_for('static', filename='materialize/js/materialize.min.js')}}"></script>
   <script src="{{url_for('static', filename='js/calendar.js')}}"></script>
 </head>
 <body>
-  <TABLE BORDER=3 CELLSPACING=7 CELLPADDING=3 id="tableID" class="centered">
-    <TR>
-      <TD ALIGN=center onclick="tableText(this)";><</TD>
-      <TD ALIGN=center></TD>
-      <TD ALIGN=center></TD>
-      <TD ALIGN=center><B>{{month}} 2016</B></TD>
-      <TD ALIGN=center></TD>
-      <TD ALIGN=center></TD>
-      <TD ALIGN=center onclick="tableText(this)";>></TD>
-    </TR>
-    <TR>
-      <TD COLSPAN="7" ALIGN=center><I>R2 Calendar</I></TD>
-    </TR>
-    <TR>
-      <TD ALIGN=center>Sunday</TD>
-      <TD ALIGN=center>Monday</TD>
-      <TD ALIGN=center>Tuesday</TD>
-      <TD ALIGN=center>Wedneday</TD>
-      <TD ALIGN=center>Thursday</TD>
-      <TD ALIGN=center>Friday</TD>
-      <TD ALIGN=center>Saturday</TD>
-    </TR>
-    <TR>
-    </TR>
-    {% for week in weekL %}
-    <TR>
-      {%for day in week%}
-      {%if day != 0%}
-      <TD ALIGN=center onclick="tableText(this)";>{{day}}</TD>
-      {% else %}
-      <TD ALIGN=center></TD>
-      {% endif %}
-      {% endfor %}
-    </TR>
-    {% endfor %}
-  </TABLE>
+  <div class= "container">
+    <div class="calendar-container">
+      <header>
+        <div class="day">23</div>
+        <div class="month">{{month}} 2016</div>
+      </header>
+      <table id="tableID" class="calendar">
+        <!--<TR>
+          <TD ALIGN=center onclick="tableText(this)";><</TD>
+          <TD ALIGN=center onclick="tableText(this)";>></TD>
+        </TR>-->
+        <thead>
+          <TR>
+            <TD ALIGN=center><div style="width: 90px; margin-bottom:10px;">Sunday</div></TD>
+            <TD ALIGN=center><div style="width: 90px; margin-bottom:10px;">Monday</div></TD>
+            <TD ALIGN=center><div style="width: 90px; margin-bottom:10px;">Tuesday</div></TD>
+            <TD ALIGN=center><div style="width: 90px; margin-bottom:10px;">Wednesday</div></TD>
+            <TD ALIGN=center><div style="width: 90px; margin-bottom:10px;">Thursday</div></TD>
+            <TD ALIGN=center><div style="width: 90px; margin-bottom:10px;">Friday</div></TD>
+            <TD ALIGN=center><div style="width: 90px; margin-bottom:10px;">Saturday</div></TD>
+          </TR>
+        </thead>
+        <TR>
+        </TR>
+        <tbody>
+          {% for week in weekL %}
+          <TR>
+            {%for day in week%}
+            {%if day != 0%}
+            <TD ALIGN=center onclick="tableText(this)";><div style="height: 50px;">{{day}}</div></TD>
+            {% else %}
+            <TD ALIGN=center></TD>
+            {% endif %}
+            {% endfor %}
+          </TR>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </body>

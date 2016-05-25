@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #from flask import Flask
-from flask import Flask, jsonify, request, redirect, current_app, json
+from flask import Flask, jsonify, request, redirect, current_app, json, abort
 import urllib, os, uuid
 app = Flask(__name__)
 
@@ -45,33 +45,48 @@ def get_notes():
     return temp
 
 @app.route('/api/v2/add-note', methods=['POST'])
-def add_notes(title):
+def add_notes():
     if not request.json or not 'title' in request.json:
         abort(400)
-    task = {
+    reminder = {
         'id': uuid.uuid4(),
         'title': request.json['title'],
         'description': request.json.get('description', ""),
         'completed': False,
         'date_due': request.json.get('date_due', "")
     }
-    reminders.append(task)
+    reminders.append(reminder)
     #for i in range(len(attributes)):
         #if(reminders[len(reminders)-1][attributes[i]]):
             #reminders[len(reminders)-1].update({attributes[i]:None})      #Assign a None value to all required attributes (except title)
     updateIDs()
-    return jsonify({'task': task}), 201
+    return jsonify({'reminder': reminder}), 201
 
-@app.route('/api/v2/edit-note/<uid>/<attribute>/<value>', methods=['PUT'])
-def edit_notes(uid, attribute, value):
-    for i in reminders:
-        if str(i['id'])==uid:
-            try:
-                i[attribute]=value
-                return "success"
-            except:
-                return "No such attribute to edit"
-    return "No such note"
+@app.route('/api/v2/edit-note/<int:uid>', methods=['PUT'])
+def edit_notes(uid):
+    reminder= [reminder for reminder in reminders if reminder['id']==uid]
+    if len(reminder) == 0:
+        abort(404)
+    if not request.json:
+        abort(400)
+    if 'title' in request.json and type(request.json['title']) != unicode:
+        abort(400)
+    if 'description' in request.json and type(request.json['description']) is not unicode:
+        abort(400)
+    if 'done' in request.json and type(request.json['done']) is not bool:
+        abort(400)
+    reminder[0]['title'] = request.json.get('title', reminder[0]['title'])
+    reminder[0]['description'] = request.json.get('description', reminder[0]['description'])
+    reminder[0]['done'] = request.json.get('done', reminder[0]['done'])
+    return jsonify({'reminder': reminder[0]})
+
+@app.route('/api/v2/delete-note/<int:uid>', methods=['DELETE'])
+def delete_note(uid):
+    reminder= [reminder for reminder in reminders if reminder['id']==uid]
+    if len(reminder)==0:
+        abort(404)
+    reminders.remove(reminder[0])
+    return jsonify({'result':True})
 
 @app.route('/api/v2/inspect-note/<uid>/<attribute>', methods=['GET'])
 def inspect_note(uid, attribute):
