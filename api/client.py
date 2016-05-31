@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, redirect, current_app, render_templat
 import urllib, os, ast, uuid, urllib2
 template_dir=os.getcwd()+"/templates/"
 app = Flask(__name__,template_folder=template_dir)
-serverURL = "http://terrible-dugong-9690.vagrantshare.com"
+serverURL = "http://192.168.56.102:8080"
 months = {
     "January":{
         "name":"January",

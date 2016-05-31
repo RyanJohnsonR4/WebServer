@@ -36,7 +36,7 @@
           <TR>
             {%for day in week%}
             {%if day != 0%}
-            <TD ALIGN=center onclick="tableText(this)";><div style="height: 50px;">{{day}}</div></TD>
+            <TD ALIGN=center onclick="tableText(this,{{month}})";><div style="height: 50px;">{{day}}</div></TD>
             {% else %}
             <TD ALIGN=center></TD>
             {% endif %}

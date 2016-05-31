@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.network :private_network, ip: "192.168.56.102"
 
-  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 80, host: 8888
 
   config.vm.synced_folder "api", "/home/WebServer/api"
   config.vm.synced_folder "database", "/home/WebServer/database"
