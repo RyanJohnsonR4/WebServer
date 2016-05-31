@@ -153,3 +153,9 @@ ENV/
 .vagrant/machines/default/virtualbox/creator_uid
 
 .vagrant/machines/default/virtualbox/creator_uid
+
+.vagrant/machines/default/virtualbox/id
+
+.vagrant/machines/default/virtualbox/action_set_name
+
+.vagrant/machines/default/virtualbox/private_key
