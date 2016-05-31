@@ -7,6 +7,7 @@
   <script src="{{url_for('static', filename='js/calendar.js')}}"></script>
 </head>
 <body>
+  <meta id="month" content={{month}}>
   <div class= "container">
     <div class="calendar-container">
       <header>
@@ -36,7 +37,7 @@
           <TR>
             {%for day in week%}
             {%if day != 0%}
-            <TD ALIGN=center onclick="tableText(this,{{month}})";><div style="height: 50px;">{{day}}</div></TD>
+            <TD ALIGN=center onclick="tableText(this,document.getElementById('month').content)";><div style="height: 50px;">{{day}}</div></TD>
             {% else %}
             <TD ALIGN=center></TD>
             {% endif %}

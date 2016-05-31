@@ -1,5 +1,4 @@
 function tableText(tableCell, month) {
-  alert(month.toString());
   var day = "";
   if (parseInt(tableCell.innerText) < 10){
     day += "0";

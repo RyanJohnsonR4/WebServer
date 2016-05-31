@@ -163,7 +163,7 @@ def get_new(date):
         var2 = (urllib.urlopen(var1).read())
         print(str(var2))
         response = json.loads(var2)
-        return render_template("reminders.html",reminderL=response)
+        return render_template("reminders.html",reminderL=response,dateS=date)
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0', port=8888, debug=True)

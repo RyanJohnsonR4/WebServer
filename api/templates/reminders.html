@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Reminders for 05052016</title>
+  <title>Reminders for {{dateS}}</title>
   <link href="{{url_for('static', filename='css/listview.css')}}" rel="stylesheet" type="text/css"/>
   <link href="{{url_for('static', filename='materialize/css/materialize.min.css')}}" rel="stylesheet" type="text/css"/>
   <script src="{{url_for('static', filename='materialize/js/materialize.min.js')}}"></script>
@@ -23,7 +23,7 @@
       <div class="card-action">
         <form action="#">
           <p>
-            <input type="checkbox" id={{reminder["id"]}} onclick="updateCompletion(this,http://laconic-vicuna-9993.vagrantshare.com,False,36c17ad9-f248-4fb7-bf47-566efd0d8ce5)"/>
+            <input type="checkbox" id={{reminder["id"]}} onclick="updateCompletion(this,"test","test","test")";/>
             <label for={{reminder["id"]}}></label>
           </scan></p>
         </div>
